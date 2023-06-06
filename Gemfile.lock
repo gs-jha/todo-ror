@@ -73,6 +73,9 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.39.1)
       addressable
       matrix
@@ -128,6 +131,7 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
+    pg (1.5.3)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -215,10 +219,12 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
+  bundler-audit (~> 0.9.1)
   capybara
   debug
   importmap-rails
   jbuilder
+  pg
   puma (~> 5.0)
   rails (~> 7.0.5)
   selenium-webdriver
