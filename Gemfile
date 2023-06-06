@@ -46,6 +46,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'pg'
+gem 'bundler-audit', '~> 0.9.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
