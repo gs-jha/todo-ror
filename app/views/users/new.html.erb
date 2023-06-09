@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">Users#new</h1>
-  <p>Find me in app/views/users/new.html.erb</p>
+<div class="flex mt-5 w-full items-center justify-center bg-cover bg-no-repeat">
+  <div class="rounded-xl bg-opacity-50 px-16 py-10 backdrop-blur-md max-md:px-8">
+    <div class="">
+      <div class="mb-8 flex flex-col items-center">
+        <span class="text-2xl">Enter Signup Details</span>
+      </div>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= render 'shared/error_messages' %>
+        <div class="mb-4 text-lg">
+          <%= f.text_field :name, class: "rounded-3xl bg-opacity-50 px-6 py-2 text-center text-inherit shadow-lg outline-none backdrop-blur-md form-control", placeholder: "Full Name"  %>
+        </div>
+        <div class="mb-4 text-lg">
+          <%= f.email_field :email, class: "rounded-3xl bg-opacity-50 px-6 py-2 text-center text-inherit shadow-lg outline-none backdrop-blur-md form-control", placeholder: "Email"  %>
+        </div>
+        <div class="mb-4 text-lg">
+          <%= f.password_field :password, class: "rounded-3xl bg-opacity-50 px-6 py-2 text-center text-inherit shadow-lg outline-none backdrop-blur-md form-control", placeholder: "Password"  %>
+        </div>
+        <div class="mb-4 text-lg">
+          <%= f.password_field :password_confirmations, class: "rounded-3xl bg-opacity-50 px-6 py-2 text-center text-inherit shadow-lg outline-none backdrop-blur-md", placeholder: "Confirm Password"  %>
+        </div>
+        <div class="mt-8 flex justify-center text-lg text-black">
+          <%= f.submit "Signup", class: "rounded-3xl bg-opacity-50 bg-green-900 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-green-600" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
