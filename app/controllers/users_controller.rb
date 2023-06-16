@@ -11,12 +11,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
+      log_in @user
       flash[:success] = "Welcome to TODO App. Now you can manage day to day task"
       redirect_to @user
     else
       render 'new'
     end
   end
+  
   private
 
     def user_params

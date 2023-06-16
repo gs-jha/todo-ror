@@ -25,11 +25,13 @@
               <span class="text-4xl font-mono subpixel-antialiased font-black">ToDo</span>
             </a>
             <div class="inline-flex items-center h-full ml-5 lg:w-2/5 lg:justify-end lg:ml-0">
-              <a href="#_" class="mr-5 font-medium hover:text-gray-900">Login</a>
-              <a href="/signup"
-                          class="px-4 py-2 text-xs font-bold text-white uppercase transition-all duration-150 bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none ease">
-                Sign Up
-              </a>
+              <% if logged_in? %>
+                <%= link_to 'Profile', current_user, class:"mr-5 font-medium hover:text-gray-900" %>
+                <%= link_to 'Log out', logout_path, method: :delete, class:"px-4 py-2 text-xs font-bold text-white uppercase transition-all duration-150 bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none ease" %>
+              <% else %>
+                <%= link_to 'Log in', login_path, class:"mr-5 font-medium hover:text-gray-900" %>
+                <%= link_to 'Sign Up', signup_path, class:"px-4 py-2 text-xs font-bold text-white uppercase transition-all duration-150 bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none ease" %>
+              <% end %>
             </div>
           </div>
         </header>
