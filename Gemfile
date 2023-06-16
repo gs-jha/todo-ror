@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 gem 'pg'
 gem 'bundler-audit', '~> 0.9.1'
 gem 'rubocop', '~> 1.52'
+gem 'rails-controller-testing'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
