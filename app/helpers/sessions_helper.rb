@@ -20,5 +20,18 @@ module SessionsHelper
         session.delete(:user_id)
         @current_user = nil
     end
+
+    # security check, ensure user is signed in, if not, redirect to signin page.
+    def logged_in_user
+        unless logged_in?
+        store_location
+        redirect_to login_url
+        end
+    end
+
+    # store the current location to support the redirect_back feature
+    def store_location
+        session[:return_to] = request.url if request.get?
+    end
     
 end
