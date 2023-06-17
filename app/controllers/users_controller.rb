@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome to TODO App. Now you can manage day to day task"
-      redirect_to @user
+      redirect_to tasks_path
     else
       render 'new'
     end

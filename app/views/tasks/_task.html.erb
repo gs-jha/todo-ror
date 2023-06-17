@@ -1,0 +1,30 @@
+<div id="<%= dom_id task %>" class="flex mb-4 items-center shadow-xl px-2 <%= 'bg-green-400' if task.completed %> ">
+  <p class="w-full my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= task.title %>
+  </p>
+  <p class="w-full my-5">
+    <strong class="block font-medium mb-1">Details:</strong>
+    <%= truncate(task.details, length: 20) %>
+  </p>
+  <p class="w-full my-5">
+    <strong class="block font-medium mb-1">Priority:</strong>
+    <%= task.priority %>
+  </p>
+  <p class="w-full my-5">
+    <strong class="block font-medium mb-1">Date:</strong>
+    <%= task.date %>
+  </p>
+  <p class="w-full my-5">
+    <strong class="block font-medium mb-1">Completed:</strong>
+    <%= task.completed %>
+  </p>
+  <% if action_name != "show" %>
+    <% if !task.completed %>
+      <%= link_to "Done", "/tasks/#{task.id}/toggle_completed", class: "flex-no-shrink rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+    <%= link_to "View", task, class: "flex-no-shrink rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit', edit_task_path(task), class: "flex-no-shrink rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
