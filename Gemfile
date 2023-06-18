@@ -49,6 +49,7 @@ gem 'pg'
 gem 'bundler-audit', '~> 0.9.1'
 gem 'rubocop', '~> 1.52'
 gem 'rails-controller-testing'
+gem 'acts_as_list'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

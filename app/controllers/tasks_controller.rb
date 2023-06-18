@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :logged_in_user
-  before_action :set_task, only: %i[ show edit update destroy toggle_completed ]
+  before_action :set_task, only: %i[ show edit update destroy toggle_completed position ]
 
   def toggle_completed
     @task.completed = !@task.completed
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = current_user.tasks.order(date: :desc)
+    @tasks = current_user.tasks.order(:position)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -71,6 +71,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def position
+    @task.insert_at(params[:position].to_i)
+    head :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -79,6 +84,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :details, :priority, :date, :completed)
+      params.require(:task).permit(:title, :details, :priority, :date, :completed, :position)
     end
 end
