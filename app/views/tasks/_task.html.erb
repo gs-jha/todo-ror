@@ -1,4 +1,4 @@
-<div id="<%= dom_id task %>" class="flex mb-4 items-center shadow-xl px-2 <%= 'bg-green-400' if task.completed %> ">
+<div id="<%= dom_id task %>" data-id="<%= task.id %>" class="flex mb-4 items-center shadow-xl px-2 <%= 'bg-green-400' if task.completed %> ">
   <p class="w-full my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= task.title %>
