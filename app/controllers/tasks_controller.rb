@@ -4,6 +4,8 @@ class TasksController < ApplicationController
 
   def toggle_completed
     @task.completed = !@task.completed
+    @task.remove_from_list
+    update_priority
     respond_to do |format|
       if @task.save
         format.html { redirect_to tasks_path }
@@ -17,6 +19,8 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.order(:position)
+    @tasks_pending = current_user.tasks.where(:completed => false).order(:position)
+    @tasks_completed = current_user.tasks.where(:completed => true).order(:position)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -64,6 +68,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
+    @task.remove_from_list
 
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
@@ -73,6 +78,7 @@ class TasksController < ApplicationController
 
   def position
     @task.insert_at(params[:position].to_i)
+    update_priority
     head :ok
   end
 
@@ -85,5 +91,11 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:title, :details, :priority, :date, :completed, :position)
+    end
+
+    def update_priority
+      Task.where(completed: false).each do |t|
+        t.update(priority: t.position)
+      end
     end
 end
