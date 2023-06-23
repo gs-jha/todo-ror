@@ -7,8 +7,21 @@
       <h1 class="font-bold text-4xl">Tasks</h1>
       <%= link_to 'New task', new_task_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
-    <div id="tasks" class="min-w-full" data-controller="dragable" data-dragable-url="/tasks/:id/position">
-      <%= render @tasks %>
+    <div data-controller="tabs" data-tabs-active-tab="-mb-px border-l border-t border-r rounded-t">
+      <ul class="list-reset flex border-b border-b-emerald-700">
+        <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+          <a class="bg-white inline-block py-2 px-4 text-green-700 hover:text-green-900 hover:bg-gray-100 font-semibold text-xl no-underline active" href="#">Pending Tasks</a>
+        </li>
+        <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+          <a class="bg-white inline-block py-2 px-4 text-green-700 hover:text-green-900 hover:bg-gray-100 font-semibold text-xl no-underline" href="#">Completed Tasks</a>
+        </li>
+      </ul>
+      <div id="tasks" class="hidden min-w-full" data-controller="dragable" data-tabs-target="panel" data-dragable-url="/tasks/:id/position">
+        <%= render @tasks_pending %>
+      </div>
+      <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
+        <%= render @tasks_completed %>
+      </div>
     </div>
   </div>
 </div>
